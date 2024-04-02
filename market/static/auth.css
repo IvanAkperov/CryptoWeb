@@ -1,0 +1,73 @@
+.container-br {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.wrapper {
+  align-items: center;
+  width: 420px;
+  height: 420px;
+  border: 1px solid white;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 100px;
+  background-color: #333333;
+
+}
+.wrapper h1 {
+  color: white;
+  font-size: 32px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.wrapper .input-box {
+  width: 100%;
+  height: 50px;
+}
+
+.wrapper .input-box input {
+  width: 250px;
+  height: 30px;
+  border-radius: 10px;
+  border: solid transparent;
+}
+
+.wrapper button{
+  width: 100%;
+  height: 30px;
+  background-color: #ea1538;
+  color: white;
+  font-size: 18px;
+  border: none;
+  cursor: pointer;
+  border-radius: 20px;
+  transition: 0.4s;
+}
+
+button .login {
+  color: green;
+}
+
+.wrapper button:hover {
+  background-color: #da0e30;
+}
+
+.register-link p {
+  color: white;
+  margin-top: 20px;
+}
+
+.register-link p a {
+  color: white;
+  font-weight: bold;
+  margin-left: 8px;
+}
+
+.register-link p a:hover {
+  text-decoration: underline;
+}

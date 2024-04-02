@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto Mono", monospace;
+  text-decoration: none;
+}
+
+.container {
+  height: 100vh;
+  width: 100%;
+  background-color: darkslategray;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+  background-color: rgb(31, 54, 54);
+}
+
+.logo {
+  color: white;
+  font-size: 35px;
+}
+
+.logo span {
+  color: #ea1538;
+}
+
+nav ul li {
+  display: inline-block;
+  font-size: 18px;
+}
+
+nav ul li a {
+  color: white;
+  padding-right: 30px;
+  transition: 0.4s ease;
+}
+
+nav ul li a:hover {
+  color: #ea1538;
+}
+
+
+.sign-in, .sign-up {
+  color: white;
+  font-size: 18px;
+  padding-right: 15px;
+  transition: 0.4s ease;
+}
+
+.sign-in:hover, .sign-up:hover {
+  color: #ea1538;
+}
+.sign-buttons {
+  display: flex;
+  justify-content: flex-end;
+}
+
+
+.user-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.flashes {
+  width: auto;
+  text-align: center;
+}
+
+.flashes li {
+  list-style: none;
+}
+
+.flashes li.danger {
+  background-color: #f2dede;
+  color: #a94442;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  font-size: 18px;
+}
+
+.flashes li.success {
+  background-color: rgb(159, 255, 159);
+  color: rgb(16, 161, 16);
+  margin-bottom: 5px;
+  border-radius: 5px;
+  font-size: 18px;
+}
+
+.flashes li.info {
+  background-color: lightskyblue;
+  color: rgb(70, 70, 246);
+  margin-bottom: 5px;
+  border-radius: 5px;
+  font-size: 18px;
+}
