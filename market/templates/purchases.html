@@ -1,0 +1,51 @@
+{% extends 'index.html' %}
+{% block title %}
+<title>
+  My purchases
+</title>
+{% endblock title %}
+{% block body %}
+<link rel="stylesheet" href="../static/shop.css">
+<div class="table-container">
+  <table class="table-items">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Sell</th>
+        <th scope="col">Max profit</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in items if item.quantity != 0 %}
+      <tr>
+        <td>{{ item.currency.name }}</td>
+        <td>{{ item.currency.price }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>
+          <form method="post" action="{{ url_for('sell_currency', currency_id=item.currency.id) }}">
+            {{ sell_form.hidden_tag() }}
+            {% if item.quantity == 0 %}
+              <p>You can't sell this currency</p>
+            {% else %}
+              <p>Are you sure you want to sell {{ item.currency.name }} for {{ item.currency.price }}<span style="color: green;">$</span> each?</p>
+              {{ sell_form.quantity(placeholder="Enter quantity to sell") }}
+              <button type="submit" style="width: 100px; height: 40px; color: white; background-color: green; border-radius: 8px; margin: 10px; font-size: 14px;">Sell</button>
+            {% endif %}
+          </form>
+        </td>
+        <td>{{ item.currency.price * item.quantity }} $</td>
+      </tr>
+      {% endfor %}
+      {% if not items or not (items | selectattr('quantity', '>', 0) | list) %}
+      <tr>
+        <td colspan="4">
+          <p>You haven't purchased anything yet. Go <a href="{{ url_for('shop') }}" style="color: white; cursor: pointer; font-size: 16px;">Shop</a> to see suggestions!</p>
+        </td>
+      </tr>
+      {% endif %}
+    </tbody>
+  </table>
+</div>
+{% endblock body %}

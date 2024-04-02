@@ -1,0 +1,39 @@
+<link rel="stylesheet" href="../static/auth.css">
+
+{% extends 'index.html' %}
+{% block title %}
+<title>Register</title>
+{% endblock title %}
+
+{% block body %}
+<div class="container-br">
+  <div class="wrapper">
+    <form action="" method="post">
+      {{ form.hidden_tag() }}
+      
+      <h1>Register</h1>
+      <div class="input-box">
+        {{ form.username(placeholder="username", required=True) }}
+      </div>
+      
+      <div class="input-box">
+        {{ form.email(placeholder="email", required=True) }}
+      </div>
+  
+      <div class="input-box">
+        {{ form.password(placeholder="password", required=True) }}
+      </div>
+  
+      <div class="input-box">
+        {{ form.password_repeat(placeholder="confirm password", required=True) }}
+      </div>
+
+      <button type="submit">Submit</button>
+
+      <div class="register-link">
+        <p>Already registered?<a href="{{ url_for('login') }}">Login</a></p>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock body %}

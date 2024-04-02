@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css">
+    {% block title %}
+      <title>Excorpse Market</title>
+    {% endblock title %}
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <h2 class="logo"><span>Excorpse</span> Market</h2>
+        <ul>
+          <li><a href="{{ url_for('home') }}">Home</a></li>
+          <li><a href="{{ url_for('spin') }}">Spin the Wheel</a></li>
+          <li><a href="{{ url_for('shop') }}">Shop</a></li>
+          <li><a href="{{ url_for('my_purchases') }}">My purchases</a></li>
+        </ul>
+        {% if current_user.is_authenticated %}
+          <div class="user-info">
+            <i class="ri-coins-line" style="color: gold;" ></i>
+            <p><span style="color: lawngreen; margin-right: 5px;" >{{ current_user.budget }}$</span></p>
+            <p class="welcome-user"><span style="font-style: italic;">Welcome, {{ current_user.username }}</span> | </p>
+            <a class="sign-up" style="margin-left: 8px;" href="{{ url_for('logout') }}">Log out</a>
+          </div>
+        {% else %}
+          <div class="sign-buttons">
+            <a class="sign-in" href="{{ url_for('login') }}">Login</a>
+            <a class="sign-up" href="{{ url_for('register') }}">Register</a>
+          </div>
+        {% endif %}
+      </nav>
+
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          <div class="flashes-container">
+            <ul class=flashes>
+            {% for category, message in messages %}
+              <li class="{{ category }}">{{ message }}</li>
+            {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
+      {% endwith %}
+      {% block body %}
+      
+      {% endblock body %}
+    </div>
+  </body>
+</html>

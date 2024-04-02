@@ -1,0 +1,14 @@
+{% extends 'index.html' %}
+{% block title %}
+<title>Spinning Wheel</title>
+{% endblock %}
+{% block body %}
+<div class="spin-text" style="display: flex; align-items: center; justify-content: center; color: aliceblue;">
+    <h1>Spin the wheel!</h1>
+</div>
+<form method="post" action="{{ url_for('spin') }}">
+    <div style="display: flex; align-items: center; justify-content: center;">
+        <button style="width: 120px; height: 40px; border: none; border-radius: 12px; background-color: blue; color: white; cursor: pointer; margin: 50px 10px;" type="submit">Spin</button>
+    </div>
+    </form>
+{% endblock %}

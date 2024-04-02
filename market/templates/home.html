@@ -1,0 +1,72 @@
+{% extends 'index.html' %}
+{% block title %}
+<title>Homepage</title>
+{% endblock title %}
+
+{% block body %}
+<style>
+  .container-market {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: 30px;
+    background-color: #333333;
+    margin-top: 100px;
+    height: 150px;
+    width: 700px;
+    color: white;
+    font-size: 20px;
+    margin-left: 400px;
+    border: 1px solid white;
+  }
+
+  .about-market {
+    text-align: center;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    margin-top: 50px;
+  }
+
+  .link-to-reg {
+    width: 140px;
+    height: 40px;
+    background-color: blue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 45%;
+    margin-top: 50px;
+    border-radius: 20px;
+    transition: 0.4s ease;
+  }
+
+  .link-to-reg a {
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+  }
+
+  .link-to-reg:hover {
+    background-color: rgb(0, 0, 210);
+  }
+
+</style>
+<div class="container-market">
+  <h1>Welcome to <span style="color: #ea1538">Excorpse</span> Market!</h1>
+</div>
+<div class="about-market">
+  <h2>your one-stop shop for all your crypto needs. Start your crypto journey with us and explore the world of digital assets with ease and security.
+    Join now and be part of the future!</h2>
+</div>
+{% if current_user.is_authenticated %}
+  <p class="link-to-reg"><a href="{{ url_for('shop') }}">Go shoppng</a></p>
+{% else %}
+  <p class="link-to-reg"><a href="{{ url_for('register') }}">Get started</a></p>
+{% endif %}
+{% endblock body %}

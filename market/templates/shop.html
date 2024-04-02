@@ -1,0 +1,67 @@
+{% extends 'index.html' %}
+
+{% block title %}
+  <title>Market</title>
+{% endblock title %}
+
+{% block body %}
+<link rel="stylesheet" href="../static/shop.css">
+<h1 class="market">Market</h1>
+<div class="table-container">
+  <table class="table-items">
+    <thead>
+        <tr>
+          <th scope="col">name</th>
+          <th scope="col">price</th>
+          <th scope="col">change</th>
+          <th scope="col">quantity</th>
+          <th scope="col">options</th>
+        </tr>
+    </thead>
+    <tbody>
+      {% for currency in currencies %}
+      <tr>
+        <td>{{currency.name}}</td>
+        <td>{{currency.price}}<span style="color: lightgreen;">$</span></td>
+        {% if currency.increase.startswith('-') %}
+          <td style="color: lightcoral;">{{currency.increase}}</td>
+        {% else %}
+          <td style="color: aquamarine;">{{currency.increase}}</td>
+        {% endif %}
+        <td>{{ currency.quantity }}</td>
+        <td>
+          <button type="button" class="btn-info" data-modal="{{currency.id}}">More Info</button>
+          <button type="button" class="btn-purchase" data-modal="{{currency.id}}" data-target="#Modal-PurchaseConfirm-{{currency.id}}">Purchase</button>
+        </td>
+      </tr>
+      {% set descriptions = {
+        'BTC': 'Bitcoin, the pioneering cryptocurrency, offers a decentralized digital currency for secure peer-to-peer transactions.',
+        'ETH': 'Ethereum, with its smart contract functionality, enables developers to build decentralized applications on its blockchain.',
+        'LTC': 'Litecoin, often referred to as the silver to Bitcoin\'s gold, provides faster transaction confirmations and improved storage efficiency.',
+        'BCH': 'Bitcoin Cash, a fork of Bitcoin, aims to provide a more scalable and user-friendly cryptocurrency for everyday transactions.',
+        'DASH': 'Dash, short for Digital Cash, offers instant and private transactions, making it a popular choice for those seeking privacy and speed.',
+        'EOS': 'EOS, built on the EOS.IO software, is designed to support large-scale decentralized applications with high transaction speeds and low fees.'
+      } %}
+      <dialog class="modal" id="{{currency.id}}">
+        <p>{{ currency.name }} - {{ descriptions[currency.name] }}</p>
+        <button type="submit" class="close-modal" style="width: 100px; height: 40px; float: right; color: white; background-color: red; border-radius: 8px; margin: 10px; font-size: 14px;">close</button>
+      </dialog>
+      <dialog class="modal" id="Modal-PurchaseConfirm-{{currency.id}}">
+        <form method="post" action="{{ url_for('purchase_currency', currency_id=currency.id) }}">
+            {{ purchase_form.hidden_tag() }}
+            {% if currency.quantity == 0 %}
+                <p>Sorry, we're currently lack of {{ currency.name }}. Check again later!</p>
+            {% else %}
+                <p>Are you sure you want to buy {{currency.name}} for {{ currency.price }}<span style="color: green;">$</span>?</p>
+                {{ purchase_form.quantity(placeholder="Enter quantity") }}
+                <button type="submit" style="width: 100px; height: 40px; color: white; background-color: green; border-radius: 8px; margin: 10px; font-size: 14px;">Purchase item</button>
+            {% endif %}
+            <button type="button" class="close-modal" style="width: 100px; height: 40px; float: right; color: white; background-color: red; border-radius: 8px; margin: 10px; font-size: 14px;">close</button>
+        </form>
+      </dialog>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+<script src="../static/js/script.js"></script>
+{% endblock body %}
